@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baseline Academy — Phase-0 Corporate Readiness</title>
+<meta name="description" content="A four-week bilingual readiness pipeline pairing technical fluency with the corporate etiquette HR actually screens for. Led by a physics researcher from Université Paris Cité and Caltech.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,680;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===================== TOKENS ===================== */
+  :root{
+    --ink:#0b1524;
+    --ink-soft:#111f35;
+    --ink-line: rgba(238,241,246,0.14);
+    --paper:#edeff3;
+    --paper-dim:#dfe2e9;
+    --paper-line: rgba(11,21,36,0.12);
+    --brass:#b8863b;
+    --brass-light:#d9b878;
+    --green:#2e9e6b;
+    --amber:#c98d2e;
+    --red:#c4483f;
+    --text-on-ink:#eef1f6;
+    --text-muted-on-ink:#9aa7bd;
+    --text-on-paper:#101826;
+    --text-muted-on-paper:#4d5666;
+    --serif:'Fraunces', serif;
+    --sans:'IBM Plex Sans', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+    --maxw: 1160px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    font-family:var(--sans);
+    background:var(--paper);
+    color:var(--text-on-paper);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  .skip-link{
+    position:absolute; left:-999px; top:auto;
+    background:var(--brass); color:var(--ink); padding:12px 18px;
+    font-family:var(--mono); font-size:13px; z-index:999; border-radius:2px;
+  }
+  .skip-link:focus{left:16px; top:16px;}
+
+  :focus-visible{
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+  }
+
+  h1,h2,h3,h4{
+    font-family:var(--serif);
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px; height:1px;
+    background:currentColor;
+    opacity:0.6;
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-family:var(--mono);
+    font-size:13.5px;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:2px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color .15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform: translateY(-1px);}
+  .btn-primary{
+    background:var(--brass);
+    color:#191008;
+    font-weight:600;
+  }
+  .btn-primary:hover{background:var(--brass-light);}
+  .btn-ghost-ink{
+    border-color: var(--ink-line);
+    color:var(--text-on-ink);
+    background:transparent;
+  }
+  .btn-ghost-ink:hover{border-color:var(--brass-light); color:var(--brass-light);}
+  .btn-ghost-paper{
+    border-color:var(--paper-line);
+    color:var(--text-on-paper);
+    background:transparent;
+  }
+  .btn-ghost-paper:hover{border-color:var(--ink); }
+
+  /* ===================== NAV ===================== */
+  header.site-nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(11,21,36,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--ink-line);
+    color:var(--text-on-ink);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .logo{
+    display:flex; flex-direction:column; line-height:1;
+    text-decoration:none;
+    color:var(--text-on-ink);
+  }
+  .logo-mark{
+    font-family:var(--serif);
+    font-size:20px; font-weight:600; letter-spacing:0.01em;
+  }
+  .logo-mark span{color:var(--brass-light);}
+  .logo-sub{
+    font-family:var(--mono);
+    font-size:9.5px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--text-muted-on-ink);
+    margin-top:4px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .logo-sub .tick{width:10px; height:2px; background:var(--brass); display:inline-block;}
+
+  .nav-links{
+    display:flex; align-items:center; gap:34px;
+    font-family:var(--mono); font-size:13px;
+  }
+  .nav-links a{
+    text-decoration:none; color:var(--text-muted-on-ink);
+    position:relative; padding-bottom:3px;
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{color:var(--text-on-ink);}
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; height:1px; width:0;
+    background:var(--brass-light); transition:width .2s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  .nav-cta{display:flex; align-items:center; gap:18px;}
+
+  .menu-toggle{
+    display:none;
+    background:none; border:1px solid var(--ink-line); border-radius:2px;
+    width:42px; height:38px;
+    color:var(--text-on-ink);
+    align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  .menu-toggle svg{width:18px; height:18px;}
+
+  .mobile-panel{
+    display:none;
+    flex-direction:column;
+    gap:2px;
+    background:var(--ink);
+    border-bottom:1px solid var(--ink-line);
+  }
+  .mobile-panel.open{display:flex;}
+  .mobile-panel a{
+    padding:16px 28px;
+    color:var(--text-on-ink);
+    text-decoration:none;
+    font-family:var(--mono); font-size:14px;
+    border-top:1px solid var(--ink-line);
+  }
+  .mobile-panel .btn{margin:16px 28px 20px;}
+
+  @media (max-width:880px){
+    .nav-links{display:none;}
+    .menu-toggle{display:flex;}
+    .nav-cta .btn-primary{display:none;}
+  }
+
+  /* ===================== SECTION SHELLS ===================== */
+  section{position:relative;}
+  .sec-ink{background:var(--ink); color:var(--text-on-ink);}
+  .sec-paper{background:var(--paper); color:var(--text-on-paper);}
+  .sec-pad{padding:104px 0;}
+  @media (max-width:720px){ .sec-pad{padding:72px 0;} }
+
+  .reveal{
+    opacity:0; transform:translateY(16px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ===================== HERO ===================== */
+  .hero{
+    padding:96px 0 110px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap:64px; align-items:start;
+  }
+  @media (max-width:960px){ .hero-grid{grid-template-columns:1fr;} }
+
+  .hero .eyebrow{color:var(--brass-light); margin-bottom:26px;}
+
+  .hero h1{
+    font-size:clamp(34px, 5.4vw, 58px);
+    line-height:1.06;
+    color:var(--text-on-ink);
+  }
+  .hero h1 em{
+    font-style:italic; font-weight:500; color:var(--brass-light);
+  }
+
+  .hero-sub{
+    margin-top:24px;
+    max-width:52ch;
+    font-size:17px;
+    color:var(--text-muted-on-ink);
+  }
+
+  .hero-ctas{
+    margin-top:38px;
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+
+  .trust-line{
+    margin-top:56px;
+    padding-top:26px;
+    border-top:1px solid var(--ink-line);
+  }
+  .trust-line .eyebrow{color:var(--text-muted-on-ink); margin-bottom:16px;}
+  .trust-marks{
+    display:flex; flex-wrap:wrap; gap:26px 34px;
+    font-family:var(--mono); font-size:13px; color:var(--text-muted-on-ink);
+  }
+  .trust-marks strong{color:var(--text-on-ink); font-weight:500;}
+
+  /* Scorecard signature widget */
+  .scorecard{
+    background:var(--paper);
+    color:var(--text-on-paper);
+    border-radius:3px;
+    padding:26px 26px 22px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.55);
+    position:relative;
+  }
+  .scorecard::before{
+    content:"";
+    position:absolute; inset:0;
+    border:1px solid var(--paper-line);
+    border-radius:3px;
+    pointer-events:none;
+  }
+  .scorecard-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    padding-bottom:16px; margin-bottom:16px;
+    border-bottom:1px dashed var(--paper-line);
+  }
+  .scorecard-head .eyebrow{font-size:10.5px; color:var(--text-muted-on-paper);}
+  .scorecard-head .cohort-tag{
+    font-family:var(--mono); font-size:11px; color:var(--brass);
+    border:1px solid var(--brass); padding:3px 8px; border-radius:20px;
+  }
+  .scorecard-title{
+    font-family:var(--serif); font-size:19px; font-weight:600; margin-top:10px;
+  }
+  .score-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:11px 0;
+    border-bottom:1px solid var(--paper-line);
+    gap:14px;
+  }
+  .score-row:last-of-type{border-bottom:none;}
+  .score-label{font-size:13.5px; color:var(--text-muted-on-paper);}
+  .score-value{
+    font-family:var(--mono); font-size:13px; font-weight:600;
+    display:flex; align-items:center; gap:8px;
+  }
+  .pill{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em;
+    padding:3px 9px; border-radius:20px; text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .pill::before{content:""; width:6px; height:6px; border-radius:50%; background:currentColor;}
+  .pill-green{background:rgba(46,158,107,0.12); color:var(--green);}
+  .pill-amber{background:rgba(201,141,46,0.14); color:var(--amber);}
+  .scorecard-foot{
+    margin-top:18px; padding-top:16px; border-top:1px dashed var(--paper-line);
+    font-size:12.5px; color:var(--text-muted-on-paper); font-style:italic;
+  }
+
+  /* ===================== STAT STRIP ===================== */
+  .stat-strip{
+    border-top:1px solid var(--paper-line);
+    border-bottom:1px solid var(--paper-line);
+    background:var(--paper-dim);
+  }
+  .stat-strip .wrap{
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:0;
+  }
+  .stat-block{
+    padding:34px 26px;
+    border-left:1px solid var(--paper-line);
+  }
+  .stat-block:first-child{border-left:none;}
+  .stat-num{
+    font-family:var(--serif); font-size:32px; font-weight:600;
+  }
+  .stat-label{
+    font-family:var(--mono); font-size:12px; color:var(--text-muted-on-paper);
+    margin-top:8px; line-height:1.5;
+  }
+  @media (max-width:760px){
+    .stat-strip .wrap{grid-template-columns:1fr;}
+    .stat-block{border-left:none; border-top:1px solid var(--paper-line); padding:24px 4px;}
+    .stat-block:first-child{border-top:none;}
+  }
+
+  /* ===================== SECTION HEADERS ===================== */
+  .sec-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .sec-head .eyebrow{margin-bottom:18px;}
+  .sec-ink .sec-head .eyebrow{color:var(--brass-light);}
+  .sec-paper .sec-head .eyebrow{color:var(--brass);}
+  .sec-head h2{
+    font-size:clamp(28px,3.6vw,40px);
+    line-height:1.12;
+  }
+  .sec-head p{
+    margin-top:18px;
+    font-size:16px;
+    max-width:56ch;
+  }
+  .sec-ink .sec-head p{color:var(--text-muted-on-ink);}
+  .sec-paper .sec-head p{color:var(--text-muted-on-paper);}
+
+  /* ===================== CURRICULUM ===================== */
+  .pillars{
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--paper-line);
+    border:1px solid var(--paper-line);
+  }
+  @media (max-width:820px){ .pillars{grid-template-columns:1fr;} }
+  .pillar{
+    background:var(--paper);
+    padding:40px 38px;
+  }
+  .pillar-index{
+    font-family:var(--mono); font-size:12px; color:var(--brass);
+    margin-bottom:22px;
+  }
+  .pillar h3{
+    font-size:24px; margin-bottom:16px;
+  }
+  .pillar p{
+    color:var(--text-muted-on-paper); font-size:15px;
+  }
+  .pillar-tags{
+    margin-top:22px; display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .tag{
+    font-family:var(--mono); font-size:11px;
+    border:1px solid var(--paper-line); border-radius:20px;
+    padding:5px 11px; color:var(--text-muted-on-paper);
+  }
+
+  .weeks{
+    margin-top:64px;
+    border-top:1px solid var(--paper-line);
+  }
+  .week-row{
+    display:grid; grid-template-columns: 110px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--paper-line);
+  }
+  @media (max-width:640px){ .week-row{grid-template-columns:70px 1fr;} }
+  .week-num{
+    font-family:var(--mono); font-size:12px; color:var(--text-muted-on-paper);
+    padding-top:4px;
+  }
+  .week-num strong{
+    display:block; font-family:var(--serif); font-size:22px; color:var(--text-on-paper); font-weight:600;
+  }
+  .week-modules{
+    display:flex; flex-wrap:wrap; gap:10px 26px;
+  }
+  .week-title{
+    font-family:var(--serif); font-weight:600; font-size:16px; margin-bottom:10px;
+  }
+  .module-list{
+    display:flex; flex-wrap:wrap; gap:8px 22px;
+    font-size:13.5px; color:var(--text-muted-on-paper);
+  }
+  .module-list li{list-style:none; position:relative; padding-left:14px;}
+  .module-list li::before{
+    content:""; position:absolute; left:0; top:8px; width:5px; height:5px; background:var(--brass); border-radius:50%;
+  }
+
+  /* ===================== FOUNDER ===================== */
+  .founder-grid{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap:64px; align-items:start;
+  }
+  @media (max-width:900px){ .founder-grid{grid-template-columns:1fr; gap:44px;} }
+
+  .founder-copy p{
+    color:var(--text-muted-on-ink); font-size:15.5px; margin-bottom:18px;
+  }
+  .founder-copy p:first-of-type{
+    font-family:var(--serif); font-size:20px; font-weight:500; color:var(--text-on-ink); line-height:1.4;
+    font-style:italic;
+    margin-bottom:26px;
+  }
+
+  .credentials{
+    display:flex; flex-direction:column; gap:1px;
+    background:var(--ink-line);
+    border:1px solid var(--ink-line);
+  }
+  .credential{
+    background:var(--ink);
+    padding:18px 22px;
+    display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:baseline;
+  }
+  .credential-org{
+    font-family:var(--serif); font-size:16px; font-weight:500; color:var(--text-on-ink);
+  }
+  .credential-role{
+    font-family:var(--mono); font-size:11.5px; color:var(--brass-light); text-align:right;
+    letter-spacing:0.02em;
+  }
+
+  /* ===================== B2B ===================== */
+  .b2b-cols{
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--paper-line); border:1px solid var(--paper-line);
+    margin-top:8px;
+  }
+  @media (max-width:820px){ .b2b-cols{grid-template-columns:1fr;} }
+  .b2b-col{
+    background:var(--paper); padding:38px 36px;
+  }
+  .b2b-col .eyebrow{color:var(--brass); margin-bottom:16px;}
+  .b2b-col h3{font-size:21px; margin-bottom:14px;}
+  .b2b-col p{color:var(--text-muted-on-paper); font-size:15px;}
+  .b2b-col .btn{margin-top:22px;}
+
+  .timeline-viz{
+    margin-top:64px;
+    background:var(--ink); color:var(--text-on-ink);
+    padding:34px 36px; border-radius:2px;
+  }
+  .timeline-viz .eyebrow{color:var(--text-muted-on-ink); margin-bottom:20px;}
+  .tl-row{display:flex; align-items:center; gap:18px; margin-bottom:16px;}
+  .tl-label{width:150px; font-family:var(--mono); font-size:12px; color:var(--text-muted-on-ink); flex-shrink:0;}
+  .tl-bar-track{flex:1; height:8px; background:rgba(238,241,246,0.1); border-radius:4px; overflow:hidden;}
+  .tl-bar{height:100%; border-radius:4px;}
+  .tl-bar.before{width:92%; background:var(--red);}
+  .tl-bar.after{width:22%; background:var(--green);}
+  .tl-val{width:70px; text-align:right; font-family:var(--mono); font-size:12px; color:var(--text-on-ink); flex-shrink:0;}
+
+  /* ===================== FINAL CTA ===================== */
+  .final-cta{
+    text-align:center;
+    padding:100px 0;
+  }
+  .final-cta h2{
+    font-size:clamp(30px,4.4vw,46px);
+    max-width:14ch; margin:0 auto;
+  }
+  .final-cta p{
+    margin:20px auto 34px; max-width:46ch;
+    color:var(--text-muted-on-ink); font-size:16px;
+  }
+  .final-cta .btn-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .final-cta .fine{
+    margin-top:22px; font-family:var(--mono); font-size:11.5px; color:var(--text-muted-on-ink);
+  }
+
+  /* ===================== FAQ ===================== */
+  .faq-item{
+    border-bottom:1px solid var(--ink-line);
+  }
+  .faq-q{
+    width:100%; text-align:left;
+    background:none; border:none; color:var(--text-on-ink);
+    font-family:var(--serif); font-size:17px; font-weight:500;
+    padding:22px 0;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+    cursor:pointer;
+  }
+  .faq-q .plus{
+    font-family:var(--mono); font-size:18px; color:var(--brass-light);
+    flex-shrink:0; transition:transform .25s ease;
+  }
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0; overflow:hidden;
+    transition:max-height .3s ease, padding .3s ease;
+    color:var(--text-muted-on-ink); font-size:15px; max-width:64ch;
+  }
+  .faq-item.open .faq-a{padding-bottom:22px;}
+
+  /* ===================== FOOTER ===================== */
+  footer{
+    background:var(--ink); color:var(--text-muted-on-ink);
+    border-top:1px solid var(--ink-line);
+    padding:64px 0 32px;
+    font-size:13.5px;
+  }
+  .footer-grid{
+    display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap:40px;
+    padding-bottom:48px; border-bottom:1px solid var(--ink-line);
+  }
+  @media (max-width:760px){ .footer-grid{grid-template-columns:1fr 1fr; row-gap:36px;} }
+  .footer-col h4{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.12em;
+    color:var(--text-on-ink); margin-bottom:16px; font-weight:600;
+  }
+  .footer-col ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;}
+  .footer-col a{text-decoration:none; color:var(--text-muted-on-ink); transition:color .15s ease;}
+  .footer-col a:hover{color:var(--text-on-ink);}
+  .footer-brand-desc{max-width:32ch; margin-top:14px; color:var(--text-muted-on-ink);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    padding-top:28px;
+    font-family:var(--mono); font-size:12px;
+  }
+
+  ::selection{background:var(--brass); color:#191008;}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ===================== NAV ===================== -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">Baseline<span>Academy</span></span>
+      <span class="logo-sub"><span class="tick"></span>Phase-0 Readiness</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#curriculum">Curriculum</a>
+      <a href="#b2b">B2B Solutions</a>
+      <a href="#founder">About the Founder</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="#apply" class="btn btn-primary">Apply — August 2026 Cohort</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="menuIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="menuIconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="display:none;"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#curriculum">Curriculum</a>
+    <a href="#b2b">B2B Solutions</a>
+    <a href="#founder">About the Founder</a>
+    <a href="#apply" class="btn btn-primary">Apply — August 2026 Cohort</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===================== HERO ===================== -->
+<section id="top" class="sec-ink hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow reveal">Cohort 24 · Enrolling for August 2026</p>
+      <h1 class="reveal">Your degree proved you can study. <em>We prove you can work.</em></h1>
+      <p class="hero-sub reveal">A four-week bilingual readiness pipeline that pairs hard technical fluency — Excel, data hygiene, professional tooling — with the specific corporate etiquette HR departments actually screen for. Built and manually graded, not auto-certified.</p>
+      <div class="hero-ctas reveal">
+        <a href="#curriculum" class="btn btn-primary">View Curriculum</a>
+        <a href="#b2b" class="btn btn-ghost-ink">For Universities &amp; HR Teams</a>
+      </div>
+
+      <div class="trust-line reveal">
+        <p class="eyebrow">Assessment standards set by researchers at</p>
+        <div class="trust-marks">
+          <span><strong>Université Paris Cité</strong> — Astrophysics</span>
+          <span><strong>Caltech</strong> — SURF Research Fellowship</span>
+          <span><strong>IUPAP</strong> — Affiliated Commission 5</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="scorecard">
+        <div class="scorecard-head">
+          <div>
+            <p class="eyebrow">Sample Output</p>
+            <p class="scorecard-title">Deployability Scorecard</p>
+          </div>
+          <span class="cohort-tag">COHORT 23</span>
+        </div>
+
+        <div class="score-row">
+          <span class="score-label">Typing speed</span>
+          <span class="score-value">38 WPM <span class="pill pill-green">Ready</span></span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Excel hygiene</span>
+          <span class="score-value">95% <span class="pill pill-green">Ready</span></span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Email tone &amp; escalation</span>
+          <span class="score-value"><span class="pill pill-amber">Monitor</span></span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Interview clarity (STAR)</span>
+          <span class="score-value"><span class="pill pill-green">Ready</span></span>
+        </div>
+
+        <p class="scorecard-foot">This is what we hand your HR team — not a certificate. A scorecard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STAT STRIP ===================== -->
+<section class="sec-paper stat-strip reveal">
+  <div class="wrap">
+    <div class="stat-block">
+      <p class="stat-num">50%+</p>
+      <p class="stat-label">of Indian graduates are considered functionally unemployable at hire — not for lack of technical theory, but baseline workplace readiness. (Wheebox India Skills Report)</p>
+    </div>
+    <div class="stat-block">
+      <p class="stat-num">14</p>
+      <p class="stat-label">scripted modules across 4 weeks — digital tools, communication hygiene, corporate behavior, and the career launchpad.</p>
+    </div>
+    <div class="stat-block">
+      <p class="stat-num">2</p>
+      <p class="stat-label">live 3-hour masterclasses per cohort — mock interviews, roleplay de-escalation, and graded live on camera.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CURRICULUM ===================== -->
+<section id="curriculum" class="sec-paper sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">The Curriculum</p>
+      <h2>Two pillars. Everything else is commentary.</h2>
+      <p>The videos are not the product — anyone can pirate a video. The product is what happens when your work gets checked against a standard you can't argue with.</p>
+    </div>
+
+    <div class="pillars reveal">
+      <div class="pillar">
+        <p class="pillar-index">01 / Technical Foundation</p>
+        <h3>The tools every operations floor actually runs on</h3>
+        <p>Every operations floor runs on the same three tools — Excel, email, and cloud drives — and most graduates have never been tested on any of them under pressure. We drill VLOOKUP, pivot tables, data validation, and file permissions until they're reflex, not theory. Because the fastest way to fail a first job isn't a wrong answer on a test. It's a corrupted master spreadsheet on a Tuesday afternoon.</p>
+        <div class="pillar-tags">
+          <span class="tag">Excel &amp; VLOOKUP</span>
+          <span class="tag">Data hygiene</span>
+          <span class="tag">Drive permissions</span>
+          <span class="tag">ATS-ready CVs</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <p class="pillar-index">02 / Corporate Etiquette &amp; Execution</p>
+        <h3>The behaviors that actually get people fired</h3>
+        <p>HR rarely rejects a graduate for weak English. They reject the email that reads like a text message, the silence when a deadline slips, and the walkout after the first piece of blunt feedback. We drill the specific, learnable behaviors — tone, escalation, accountability, professional stamina — that separate a first job from a fired-in-week-two story.</p>
+        <div class="pillar-tags">
+          <span class="tag">Email &amp; escalation</span>
+          <span class="tag">Feedback resilience</span>
+          <span class="tag">Meeting etiquette</span>
+          <span class="tag">STAR interviews</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="weeks reveal">
+      <div class="week-row">
+        <div class="week-num"><strong>01</strong>Week</div>
+        <div>
+          <p class="week-title">The Digital Toolbelt</p>
+          <ul class="module-list">
+            <li>MS Word formatting</li><li>MS Excel &amp; VLOOKUP</li><li>MS PowerPoint (5×5 rule)</li><li>Google Drive &amp; permissions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="week-row">
+        <div class="week-num"><strong>02</strong>Week</div>
+        <div>
+          <p class="week-title">Communication Hygiene</p>
+          <ul class="module-list">
+            <li>Gmail &amp; WhatsApp comms</li><li>Meeting etiquette &amp; MoMs</li><li>Communication &amp; confidence</li>
+          </ul>
+        </div>
+      </div>
+      <div class="week-row">
+        <div class="week-num"><strong>03</strong>Week</div>
+        <div>
+          <p class="week-title">Corporate Behavior</p>
+          <ul class="module-list">
+            <li>Dressing sense</li><li>Behavior &amp; feedback</li><li>Working in a team</li><li>Social media &amp; NDAs</li>
+          </ul>
+        </div>
+      </div>
+      <div class="week-row">
+        <div class="week-num"><strong>04</strong>Week</div>
+        <div>
+          <p class="week-title">The Career Launchpad</p>
+          <ul class="module-list">
+            <li>CV / resume prep</li><li>Interview prep &amp; negotiation</li><li>AI for productivity</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOUNDER ===================== -->
+<section id="founder" class="sec-ink sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Why the Standard Is This High</p>
+      <h2>This isn't a founder biography. It's why the rubric doesn't bend.</h2>
+    </div>
+
+    <div class="founder-grid reveal">
+      <div class="credentials">
+        <div class="credential">
+          <span class="credential-org">Université Paris Cité</span>
+          <span class="credential-role">M1 Astrophysics</span>
+        </div>
+        <div class="credential">
+          <span class="credential-org">University of Delhi</span>
+          <span class="credential-role">BSc (Hons) Physics</span>
+        </div>
+        <div class="credential">
+          <span class="credential-org">Caltech</span>
+          <span class="credential-role">SURF Fellowship — FRB Research</span>
+        </div>
+        <div class="credential">
+          <span class="credential-org">APC Laboratory, Paris</span>
+          <span class="credential-role">Gamma-Ray Source Modeling</span>
+        </div>
+        <div class="credential">
+          <span class="credential-org">IUPAP</span>
+          <span class="credential-role">Vice Chair, Affiliated Commission 5</span>
+        </div>
+        <div class="credential">
+          <span class="credential-org">INPS</span>
+          <span class="credential-role">Founder &amp; Governing Council Chair</span>
+        </div>
+        <div class="credential">
+          <span class="credential-org">IAPS</span>
+          <span class="credential-role">International Representative</span>
+        </div>
+      </div>
+
+      <div class="founder-copy">
+        <p>The assessment engine behind every Baseline Academy scorecard wasn't designed by a content team. It was built by a physicist.</p>
+        <p>Anant is an M1 Astrophysics researcher at Université Paris Cité, following a BSc (Hons) in Physics from the University of Delhi. At the APC Laboratory in Paris, his current research models gamma-ray sources using LHAASO observational data — the kind of work where a single mislabeled column quietly breaks a dataset other researchers rely on for years. Before Paris, a Caltech SURF fellowship had him building scintillation-timescale pipelines from fast radio burst data — the same discipline of clean inputs and zero tolerance for sloppy work, now applied to a Word document formatted by a 21-year-old in Lucknow.</p>
+        <p>That same rigor extends to how the program is governed, not just how it's built. He represents IAPS internationally, sits as Vice Chair of IUPAP's Affiliated Commission 5, and chairs the Governing Council of INPS — the physics-student network he founded to organize students across India.</p>
+        <p>None of this is here to impress a job-seeker. It's here because it's the reason the grading rubric doesn't bend, "close enough" doesn't pass, and the scorecard we hand your HR team actually means something.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== B2B ===================== -->
+<section id="b2b" class="sec-paper sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">For Corporate HR &amp; University Placement Cells</p>
+      <h2>Your onboarding problem isn't a training problem. It's a readiness problem.</h2>
+      <p>We run before your induction does — so the people who reach your floor, or your placement drive, are already deployable.</p>
+    </div>
+
+    <div class="b2b-cols reveal">
+      <div class="b2b-col">
+        <p class="eyebrow">For Operations &amp; HR Leads</p>
+        <h3>Stop teaching what shouldn't be your team's job</h3>
+        <p>Most operations leads spend two to four weeks and real budget walking freshers through basics your internal trainers shouldn't have to cover — inbox hygiene, spreadsheet discipline, professional tone. We run a compressed readiness pipeline alongside your induction and hand you a scored, traffic-light dashboard: who's ready for the floor, who needs a week of monitoring, and who isn't client-facing yet.</p>
+        <a href="#apply" class="btn btn-ghost-paper">Request a Pilot Batch →</a>
+      </div>
+      <div class="b2b-col">
+        <p class="eyebrow">For Deans &amp; Placement Cells</p>
+        <h3>A placement-readiness layer on top of your curriculum</h3>
+        <p>A technically sound resume still gets filtered out in six seconds by tone, formatting, or an unpolished digital presence — and that outcome reflects on your placement cell, not just the student. We run as a readiness layer on top of your existing program: a scored, verifiable Assessment Letter recruiters trust, and a cohort that walks into interviews already rehearsed.</p>
+        <a href="#apply" class="btn btn-ghost-paper">Talk to Us About Your Cohort →</a>
+      </div>
+    </div>
+
+    <div class="timeline-viz reveal">
+      <p class="eyebrow">Induction Time — Before / After Phase-0</p>
+      <div class="tl-row">
+        <span class="tl-label">Without Baseline</span>
+        <div class="tl-bar-track"><div class="tl-bar before"></div></div>
+        <span class="tl-val">3–4 weeks</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-label">With Baseline</span>
+        <div class="tl-bar-track"><div class="tl-bar after"></div></div>
+        <span class="tl-val">3 days</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section id="apply" class="sec-ink final-cta">
+  <div class="wrap">
+    <p class="eyebrow reveal" style="justify-content:center;">Cohort 24 · Rolling Enrollment</p>
+    <h2 class="reveal">Apply for the August 2026 cohort.</h2>
+    <p class="reveal">Pay any day of the week — your access opens the following Monday, and your four-week clock starts from there.</p>
+    <div class="btn-row reveal">
+      <a href="mailto:hello@baselineacademy.in" class="btn btn-primary">Apply Now</a>
+      <a href="#b2b" class="btn btn-ghost-ink">Bring This to Our Company</a>
+    </div>
+    <p class="fine reveal">₹2,000 · Early Cohort Rate — bilingual delivery, Hindi &amp; English</p>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="sec-ink sec-pad" style="padding-top:0;">
+  <div class="wrap" style="max-width:760px;">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Before You Apply</p>
+      <h2>A few things people ask about Cohort 24</h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          When does the August 2026 cohort actually start, and how long does it run?
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Enrollment is rolling — you can pay on any day of the week. Your classroom access and video modules unlock the following Monday, and the program runs for four weeks from that date, including two live 3-hour masterclasses on the 2nd and 4th Sunday.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Is this taught in English or Hindi?
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Every module is delivered bilingually, in Hindi and English, because the skills being tested — Excel accuracy, email tone, interview structure — matter more than the language you're most comfortable thinking in.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          What do I actually walk away with at the end?
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Not a certificate of completion — a scored Assessment Letter covering typing speed, software fluency, and communication clarity, in the same format we hand directly to hiring partners.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="logo-mark" style="font-size:18px;">Baseline<span style="color:var(--brass-light);">Academy</span></span>
+        <p class="footer-brand-desc">Phase-0 corporate readiness for Tier-2 and Tier-3 graduates. Assessed, not just taught.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Program</h4>
+        <ul>
+          <li><a href="#curriculum">Curriculum</a></li>
+          <li><a href="#founder">About the Founder</a></li>
+          <li><a href="#apply">Apply Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Partners</h4>
+        <ul>
+          <li><a href="#b2b">Corporate HR</a></li>
+          <li><a href="#b2b">Universities &amp; Deans</a></li>
+          <li><a href="mailto:hello@baselineacademy.in">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Baseline Academy. All rights reserved.</span>
+      <span>Made for Tier-2 &amp; Tier-3 India.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mobilePanel = document.getElementById('mobilePanel');
+  const iconOpen = document.getElementById('menuIconOpen');
+  const iconClose = document.getElementById('menuIconClose');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobilePanel.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    iconOpen.style.display = isOpen ? 'none' : 'block';
+    iconClose.style.display = isOpen ? 'block' : 'none';
+  });
+
+  document.querySelectorAll('.mobile-panel a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobilePanel.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      iconOpen.style.display = 'block';
+      iconClose.style.display = 'none';
+    });
+  });
+
+  // Smooth scroll for in-page anchors (native CSS already handles most,
+  // this ensures older browsers + focus management behave)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId.length > 1) {
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+        }
+      }
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    const answer = item.querySelector('.faq-a');
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      // close all others
+      document.querySelectorAll('.faq-item.open').forEach(other => {
+        if (other !== item) {
+          other.classList.remove('open');
+          other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+          other.querySelector('.faq-a').style.maxHeight = null;
+        }
+      });
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      answer.style.maxHeight = !isOpen ? answer.scrollHeight + 'px' : null;
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
